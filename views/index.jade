@@ -1,0 +1,157 @@
+extends layout
+block content
+    ul
+        #navBox
+            li Test
+            li Test
+            li Test
+
+    //h1= title
+    //p Welcome to #{title} and #{title2}
+    // Wrapper
+    #wrapper
+        h1 ScoreGauge
+        //// USER LIST
+        //h2 User List
+        //
+        //    // USER INFO
+        //    #userInfo
+        //        h2 User Info
+        //        p
+        //            strong Name:
+        //            | <span id='userInfoName'></span>
+        //            br
+        //            strong Age:
+        //            | <span id='userInfoAge'></span>
+        //            br
+        //            strong Gender:
+        //            | <span id='userInfoGender'></span>
+        //            br
+        //            strong Location:
+        //            | <span id='userInfoLocation'></span>
+        //// /USER INFO
+        //
+        //
+        //#userList
+        //    table
+        //        thead
+        //            th UserName
+        //            th Email
+        //            th Delete?
+        //            th Modify?
+        //        tbody
+        //// /USER LIST
+
+
+        //Old. To Delete
+        //script(id = "testTemplate" type = "text/template").
+        //    <section id = "test">
+        //            <form id="questionForm">
+        //            <fieldset>
+        //                <div class = "question"> <%= Question %> </div>
+        //                <div>
+        //                    <input id="answerOne" type="checkbox" /><label for="answerOne"><%= AnswerOne %> </label>
+        //                    <input id="answerTwo" type="checkbox" /><label for="answerTwo"><%= AnswerTwo %> </label>
+        //                    <input id="answerThree" type="checkbox" /><label for="answerThree"><%= AnswerThree %> </label>
+        //                    <input id="answerFour" type="checkbox" /><label for="answerFour"><%= AnswerFour %> </label>
+        //                    <button id="btnSubmit">Submit</button>
+        //                </div>
+        //            </fieldset>
+        //            </form>
+        //    </section>
+
+        // Questions
+        script(id = "testTemplate" type = "text/template").
+            <section id = "test">
+                    <form id="questionForm">
+                        <div class = "question" id =<%= Number %>> <%= Question %> </div>
+                        <fieldset>
+                            <input id="AnswerOne" type="radio" name="answers" /><label for="AnswerOne"><%= AnswerOne %> </label>
+                            <input id="AnswerTwo" type="radio" name="answers"/><label for="AnswerTwo"><%= AnswerTwo %> </label>
+                            <input id="AnswerThree" type="radio" name="answers"/><label for="AnswerThree"><%= AnswerThree %> </label>
+                            <input id="AnswerFour" type="radio" name="answers"/><label for="AnswerFour"><%= AnswerFour %> </label>
+                            <button id="btnSubmit">Submit</button>
+                            <div id = "correctAnswer"> <%=Correct%> </div>
+                            <div id = "DifficultyAnswer"> <%=Difficulty%> </div>
+                        </fieldset>
+
+                    </form>
+            </section>
+
+        // Results
+        script(id = "resultsTemplate" type = "text/template").
+            <table>
+                <tr>
+                    <th>ScoreRange</th>
+                </tr>
+                <tr>
+                    <td> <%= scoreRange %>  </td>
+                </tr>
+                <tr>
+                <tr>
+                    <th>Schools within your range</th>
+                </tr>
+                    <td> <%= schoolsList %>  </td>
+                </tr>
+                <tr>
+                    <th>Recommended Resources</th>
+                </tr>
+                <tr>
+                    <td> <%= Resources %>  </td>
+                </tr>
+
+            </table>
+
+        //// ADD USER
+        //h2 Add User
+        //#addUser
+        //    fieldset
+        //        input#inputUserName(type='text', placeholder='Username')
+        //        input#inputUserEmail(type='text', placeholder='Email')
+        //        br
+        //        input#inputUserFullname(type='text', placeholder='Full Name')
+        //        input#inputUserAge(type='text', placeholder='Age')
+        //        br
+        //        input#inputUserLocation(type='text', placeholder='Location')
+        //        input#inputUserGender(type='text', placeholder='gender')
+        //        br
+        //        button#btnAddUser Add User
+        //// /ADD USER
+
+        // MODIFY USER
+        //h2 Modify User
+        //#modifyUser
+        //    fieldset
+        //        input#modifyUserName(type = 'text', placeholder = 'Username')
+        //        input#modifyUserEmail(type = 'text', placeholder = 'Email')
+        //        br
+        //        input#modifyUserFullName(type = 'text', placeholder = 'Full Name')
+        //        input#modifyUserAge(type='text', placeholder='Age')
+        //        br
+        //        input#modifyUserLocation(type='text', placeholder='Location')
+        //        input#modifyUserGender(type='text', placeholder='gender')
+        //        br
+        //        button#btnModifyUser Modify User
+
+
+        //#addQuestion
+        //    h2 Add Question
+        //    fieldset
+        //        input#Question(type='text', placeholder='Question')
+        //        br
+        //        input#AnswerOne(type='text', placeholder='AnswerOne')
+        //        br
+        //        input#AnswerTwo(type='text', placeholder='AnswerTwo')
+        //        br
+        //        input#AnswerThree(type='text', placeholder='AnswerThree')
+        //        br
+        //        input#AnswerFour(type='text', placeholder='AnswerFour')
+        //        br
+        //        input#Number(type='text', placeholder='Number')
+        //        br
+        //        button#btnAddQuestion Add Question
+        #testQuestions
+
+
+    // /WRAPPER
+
