@@ -15,8 +15,8 @@ app.TestView = Backbone.View.extend({
 //        this.render();
 
 
-        this.listenTo( this.collection, 'add', this.renderQuestion);
-        this.listenTo( this.collection, 'reset', this.render );
+        this.listenTo(this.collection, 'add', this.renderQuestion);
+        this.listenTo(this.collection, 'reset', this.render );
     },
 
     events: {
@@ -115,28 +115,63 @@ app.TestView = Backbone.View.extend({
         }
 
         // kickoff render or submitTest depending on if last answer
-        if (numbersUsed.length >= 15) {
-            this.submitTest();
-        } else {
-            this.render(nextNumber);
+
+
+        if (numbersUsed.length < 5){
+            this.render(nextNumber, false);
+        } else if (numbersUsed.length === 5) {
+            console.log('second to last Question!');
+            this.render(nextNumber,true);
+        } else if (numbersUsed.length > 5) {
+            this.results(level);
         }
 
     },
 
-
 // renders result page
-    submitTest: function(){
-        console.log('submitTest running');
+
+    results: function(level){
+        console.log('results!!!!');
+        console.log(level);
+
+        // create model based on level
+
+        var resultsModel = {};
+
+        if (level < 5){
+            resultsModel.scoreRange = '12323';
+            resultsModel.schoolsList = 'test';
+            resultsModel.resources = 'list of resources';
+
+        } else if (level >= 5 && level < 11){
+            resultsModel[scoreRange] = 12323;
+            resultsModel[schoolsList] = 'test';
+            resultsModel[resources] = 'list of resources';
+
+        } else if (level >= 11 && level < 13){
+            resultsModel[scoreRange] = 12323;
+            resultsModel[schoolsList] = 'test';
+            resultsModel[resources] = 'list of resources';
+
+        } else if (level >= 13){
+            resultsModel[scoreRange] = 12323;
+            resultsModel[schoolsList] = 'test';
+            resultsModel[resources] = 'list of resources';
+
+        }
+
+        console.log(resultsModel);
+
 
         var resultsView = new app.resultsView({
-            // model?
+            model: resultsModel
         });
 
-        this.$el.append(resultsView.render().el);
+        this.$el.html(resultsView.render().el);
 
     },
 
-    render: function(nextNumber) {
+    render: function(nextNumber, lastQuestion) {
         console.log('render running');
         //Delete previous question
         this.$el.empty();
@@ -145,18 +180,17 @@ app.TestView = Backbone.View.extend({
             var i = nextNumber;
         } else {var i = 1;}
 
-
         var question = this.collection.find(function(model) {
         return model.get('Number') == i; }
         , this);
 
-        this.renderQuestion(question);
+        this.renderQuestion(question, lastQuestion);
 
     },
 
     // render a book by creating a BookView and appending the
     // element it renders to the library's element
-    renderQuestion: function( item ) {
+    renderQuestion: function(item, lastQuestion) {
         console.log('renderQuestion running');
 
         var questionView = new app.questionsView({
@@ -164,6 +198,14 @@ app.TestView = Backbone.View.extend({
         });
 
         this.$el.append(questionView.render().el);
+
+        if (lastQuestion === true){
+            $('#btnSubmit').html('Submit Test!');
+
+//            $('#btnSubmitFinal').removeClass('btnHide');
+//            $('#btnSubmit').addClass('btnHide');
+        }
+
     }
 
 
