@@ -1,13 +1,13 @@
-# SG
+# ScoreGauge
 
 A framework for creating tests that provide a (relatively) quick gauge of a user's performance on a standardized test. 
 
 The idea is that it's possible to zero in on a reasonably accurate score range in less time by DYNANAMICALLY generating questions based on the previous answer's result.
 
 The user begins at a neutral Level value which increments or decrements depending on whether they answer the question correctly. A user's current Level determines the difficulty level of the questions and the ending level determines the score range. 
------
-Still under construction – Creating interface for Difficulty and Results settings. 
 
+---
+Still under construction – Creating interface for Difficulty and Results settings. 
 
 ##Level
 Begins at a neutral level and increments or decrements by one depending on whether the user answers correctly or incorrectly. This is the main driver of questions and score. 
