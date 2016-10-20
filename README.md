@@ -69,3 +69,5 @@ app.questionsModel = Backbone.Model.extend({
 
 ##Use 
 
+##Tech Stack
+Backbone, Node, Express, MongoDB
